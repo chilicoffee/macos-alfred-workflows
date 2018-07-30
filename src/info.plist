@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>0x84.alfred.shimo</string>
+	<string>jp.alfred.shimo</string>
 	<key>category</key>
 	<string>Tools</string>
 	<key>connections</key>
@@ -50,27 +50,27 @@
 				<key>runningsubtext</key>
 				<string>waiting ...</string>
 				<key>script</key>
-				<string>set q to "{query}"
+				<string>set q to &quot;{query}&quot;
 
-set xml to "&lt;?xml version='1.0' ?&gt;"
+set xml to &quot;&lt;?xml version=&apos;1.0&apos; ?&gt;&quot;
 
-tell application "Shimo"
-	set xml to xml &amp; "&lt;items&gt;"
+tell application &quot;Shimo&quot;
+	set xml to xml &amp; &quot;&lt;items&gt;&quot;
 	repeat with n in (accounts as list)
 		set na to name of n
-		if q is "" or q is in na then
-		set xml to xml &amp; "&lt;item uid='" &amp; na &amp; "' arg='" &amp; na &amp; "'&gt;"
-		set xml to xml &amp; "&lt;title&gt;" &amp; na &amp; "&lt;/title&gt;"
+		if q is &quot;&quot; or q is in na then
+		set xml to xml &amp; &quot;&lt;item uid=&apos;&quot; &amp; na &amp; &quot;&apos; arg=&apos;&quot; &amp; na &amp; &quot;&apos;&gt;&quot;
+		set xml to xml &amp; &quot;&lt;title&gt;&quot; &amp; na &amp; &quot;&lt;/title&gt;&quot;
 		if connected of n is true then
-			set xml to xml &amp; "&lt;icon&gt;vpn_connect.png&lt;/icon&gt;"
+			set xml to xml &amp; &quot;&lt;icon&gt;vpn_connect.png&lt;/icon&gt;&quot;
 		else
-			set xml to xml &amp; "&lt;icon&gt;vpn_disconnect.png&lt;/icon&gt;"
+			set xml to xml &amp; &quot;&lt;icon&gt;vpn_disconnect.png&lt;/icon&gt;&quot;
 		end if
-		set xml to xml &amp; "&lt;/item&gt;"
+		set xml to xml &amp; &quot;&lt;/item&gt;&quot;
 		end if
 	end repeat
-	set xml to xml &amp; "&lt;item uid='off' arg='off'&gt;&lt;title&gt;Disconnect&lt;/title&gt;&lt;subtitle&gt;Disconnect all connections&lt;/subtitle&gt;&lt;icon&gt;vpn_icon.png&lt;/icon&gt;&lt;/item&gt;"
-	set xml to xml &amp; "&lt;/items&gt;"
+	set xml to xml &amp; &quot;&lt;item uid=&apos;off&apos; arg=&apos;off&apos;&gt;&lt;title&gt;Disconnect&lt;/title&gt;&lt;subtitle&gt;Disconnect all connections&lt;/subtitle&gt;&lt;icon&gt;vpn_icon.png&lt;/icon&gt;&lt;/item&gt;&quot;
+	set xml to xml &amp; &quot;&lt;/items&gt;&quot;
 end tell
 
 return text of xml</string>
@@ -94,7 +94,22 @@ return text of xml</string>
 			<key>config</key>
 			<dict>
 				<key>applescript</key>
-				<string>on alfred_script(q)	if q starts with "discon" or q is "off" then		tell application "Shimo"			repeat with n in (accounts as list)				if (connected of n) is true then					disconnect account n				end if			end repeat		end tell	else		if q is not "" then			tell application "Shimo"				connect account (account q)			end tell		end if	end if
+				<string>on alfred_script(q)
+	if q starts with &quot;discon&quot; or q is &quot;off&quot; then
+		tell application &quot;Shimo&quot;
+			repeat with n in (accounts as list)
+				if (connected of n) is true then
+					disconnect account n
+				end if
+			end repeat
+		end tell
+	else
+		if q is not &quot;&quot; then
+			tell application &quot;Shimo&quot;
+				connect account (account q)
+			end tell
+		end if
+	end if
 end alfred_script</string>
 				<key>cachescript</key>
 				<false/>
@@ -123,6 +138,6 @@ end alfred_script</string>
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>https://github.com/0x84/alfred</string>
+	<string>https://gitlab.com/janis.puris/macos-automator</string>
 </dict>
 </plist>
